@@ -1,19 +1,30 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="rut_module.list">
-      <field name="name">rut_module list</field>
-      <field name="model">rut_module.rut_module</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    
+ 
+     <record id="view_employee_form_inherit" model="ir.ui.view">
+        	<field name="name">RUT</field>
+        	<field name="model">hr.employee</field>
+        	<field name="inherit_id" ref="hr.view_employee_form"/>
+        	<field name="arch" type="xml">
+            	<field name="name" position="after">
+                		<field name="x_rut" placeholder="Rut"/>
+            	</field>
+        	</field>
+      </record>
+    
+      <record id="view_partner_form_inherit" model="ir.ui.view">
+        	<field name="name">RUT</field>
+        	<field name="model">res.partner</field>
+        	<field name="inherit_id" ref="base.view_partner_form"/>
+        	<field name="arch" type="xml">
+            	<field name="name" position="after">
+                		<field name="x_rut" placeholder="Rut"/>
+            	</field>
+        	</field>
+      </record>
+   
 
     <!-- actions opening views on models -->
     <!--

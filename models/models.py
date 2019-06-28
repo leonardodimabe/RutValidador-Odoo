@@ -40,7 +40,25 @@ class RutValidator:
 class RutFIeld(models.Model):
     _inherit = 'res.partner'
 
-    x_rut = fields.Char(required=True)
+    x_rut = fields.Char(required=True, string = 'RUT')
+
+    @api.constrains('x_rut')
+    def check_rut(self):
+        rut_validator = RutValidator()
+        for record in self:
+            if not rut_validator.valid_rut(record.x_rut):
+                raise ValidationError('EL rut ingresado no es valido')
+    
+    @api.onchange('x_rut')
+    def show_message(self):
+        if (self.x_rut):
+            rut_validator = RutValidator()
+            self.x_rut = rut_validator.format_rut(self.x_rut)
+
+class EmployeeRutFIeld(models.Model):
+    _inherit = 'hr.employee'
+
+    x_rut = fields.Char(required=True, string = 'RUT')
 
     @api.constrains('x_rut')
     def check_rut(self):
