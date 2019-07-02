@@ -40,7 +40,7 @@ class RutValidator:
 class RutFIeld(models.Model):
     _inherit = 'res.partner'
 
-    x_rut = fields.Char(required=True, string = 'RUT')
+    x_rut = fields.Char(required=True, string = 'RUT', unique = True)
 
     @api.constrains('x_rut')
     def check_rut(self):
@@ -58,7 +58,7 @@ class RutFIeld(models.Model):
 class EmployeeRutFIeld(models.Model):
     _inherit = 'hr.employee'
 
-    x_rut = fields.Char(required=True, string = 'RUT')
+    x_rut = fields.Char(required=True, string = 'RUT', unique = True)
 
     @api.constrains('x_rut')
     def check_rut(self):
